@@ -41,7 +41,7 @@ How to add a navigation bar with templates
 mkdir templates
 ```
 #### STEP 2 - Make the following template file for the navigation bar (navbar.html) and store it in the templates folder:
-```
+```html
 <html>
     <head>
         <title>Flask Demo</title>
@@ -54,7 +54,7 @@ mkdir templates
 </html>
 ```
 #### STEP 3 - Make an index.html component that extends from the navbar.html template file and store it in the templates folder:
-```
+```html
 {% extends "navbar.html" %}
 
 {% block content %}
@@ -63,10 +63,10 @@ mkdir templates
 
 ```
 #### STEP 4 - Add the following import statement to app.py:
-```
+```python
 from flask import render_template
 ```
 #### STEP 5 - Update the return statement of app.py to render index.html and its parent template navbar.html:
-```
+```python
 return render_template('index.html', message='Hello World!')
 ```
