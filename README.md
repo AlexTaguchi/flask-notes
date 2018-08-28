@@ -1,5 +1,5 @@
 # FlaskTutorial
-Collection of simple Flask webpages(https://hello-thatflippingfool.herokuapp.com/)
+Collection of simple Flask webpages (https://hello-thatflippingfool.herokuapp.com/)
 
 How to create the "Hello World!" page
 ---
