@@ -111,7 +111,7 @@ def echoer():
 		
 		# Read out some of the file contents
 		file = [line.decode() for line in request.files['file'].readlines(1000)]
-return render_template('echo.html', echo=''.join(file))
+	return render_template('echo.html', echo=''.join(file))
 ```
 #### STEP 5 - Add a secret key for API calling
 ```python
