@@ -1,5 +1,6 @@
-# Import Flask module
+# Import Flask and templates
 from flask import Flask
+from flask import render_template
 
 # Create Flask object
 app = Flask(__name__)
@@ -7,10 +8,11 @@ app = Flask(__name__)
 
 # Url addresses are assigned by function decoration
 @app.route('/')
+@app.route('/index')
 def index():
 
     # Generate html
-    return '<h1>Hello World!</h1>'
+    return render_template('header.html', message='Hello World!')
 
 
 # Enable python script to be executable
