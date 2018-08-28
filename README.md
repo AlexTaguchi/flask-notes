@@ -27,8 +27,8 @@ pipenv install gunicorn  # add gunicorn as a dependency to the project and Pipfi
 ```
 echo 'web: gunicorn app:app' > Procfile
 ```
-#### STEP 4 - Check that it works on the local host in your browser
+#### STEP 4 - Check that it works on local host in your browser
 ```
 python app.py
 ```
-#### STEP 5 - Create a new app on Heroku and follow the git instructions to upload
+#### STEP 5 - Upload into a remote Git repository and deploy on Heroku!
