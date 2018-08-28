@@ -3,7 +3,7 @@ Collection of simple Flask webpages (https://hello-thatflippingfool.herokuapp.co
 
 How to create the "Hello World!" page
 ---
-#### STEP 1 - Make the following Flask python "app.py" script in the new directory you want your project to be in:
+#### STEP 1 - Make the following Flask python app.py script in the new directory you want your project to be in:
 ```python
 from flask import Flask
 
@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     return 'Hello World!'
 
@@ -32,3 +33,40 @@ echo 'web: gunicorn app:app' > Procfile
 python app.py
 ```
 #### STEP 5 - Upload into a remote Git repository and deploy on Heroku!
+
+How to add a navigation bar with templates
+---
+#### STEP 1 - Create a templates folder in the root of the project directory:
+```
+mkdir templates
+```
+#### STEP 2 - Make the following template file for the navigation bar (navbar.html) and store it in the templates folder:
+```html
+<html>
+    <head>
+        <title>Flask Demo</title>
+    </head>
+    <body>
+        <div>Navigation: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
+```
+#### STEP 3 - Make an index.html component that extends from the navbar.html template file and store it in the templates folder:
+```html
+{% extends "navbar.html" %}
+
+{% block content %}
+    <h1>{{ message }}</h1>
+{% endblock %}
+
+```
+#### STEP 4 - Add the following import statement to app.py:
+```python
+from flask import render_template
+```
+#### STEP 5 - Update the return statement of app.py to render index.html and its parent template navbar.html:
+```python
+return render_template('index.html', message='Hello World!')
+```
