@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
 
     # Generate html
-    return render_template('header.html', message='Hello World!')
+    return render_template('index.html', message='Hello World!')
 
 
 # Enable python script to be executable
