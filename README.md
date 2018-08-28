@@ -70,3 +70,52 @@ from flask import render_template
 ```python
 return render_template('index.html', message='Hello World!')
 ```
+How to submit files for backend python processing
+---
+#### STEP 1 - Create the following echo.html component that extends navbar.html and store it in the templates folder:
+```html
+{% extends "navbar.html" %}
+
+{% block content %}
+    <form action = "{{ url_for('echoer') }}" method="post"
+        enctype="multipart/form-data">
+        <input type = "file" name = "file" />
+        <input type = "submit"/>
+    </form>
+    <pre>{{ echo }}</pre>
+{% endblock %}
+```
+#### STEP 2 - Update the \<div>...\</div> line of navbar.html to contain a link to the Echo webpage:
+```html
+<div>Navigation: <a href="/index">Home</a> <a href="/echo">Echo</a></div>
+```
+#### STEP 3 - Add request and url_for to the flask imports in app.py:
+```python
+from flask import Flask, render_template, request, url_for
+```
+#### STEP 4 - Create the API calling (/echo) and handling (/echoer) webpages in app.py:
+```python
+@app.route('/echo')
+def echo():
+	return render_template('echo.html', echo='')
+
+@app.route('/echoer', methods = ['POST'])
+def echoer():
+	
+	# Check that it is a POST request
+	if request.method == 'POST':
+		
+		# Confirm a file is uploaded
+		if 'file' not in request.files:
+			return render_template('echo.html', echo='No file uploaded!')
+		
+		# Read out some of the file contents
+		file = [line.decode() for line in request.files['file'].readlines(1000)]
+return render_template('echo.html', echo=''.join(file))
+```
+#### STEP 5 - Add a secret key for API calling
+```python
+if __name__ == "__main__":
+	app.secret_key = 'super secret key'
+    app.run()
+```
