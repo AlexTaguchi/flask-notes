@@ -77,7 +77,7 @@ How to submit files for backend python processing
 {% extends "navbar.html" %}
 
 {% block content %}
-    <form action = "{{ url_for('echoer') }}" method="post"
+    <form action = "{{ url_for('echo') }}" method="post"
         enctype="multipart/form-data">
         <input type = "file" name = "file" />
         <input type = "submit"/>
@@ -91,27 +91,26 @@ How to submit files for backend python processing
 ```
 #### STEP 3 - Add request and url_for to the flask imports in app.py:
 ```python
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request
 ```
 #### STEP 4 - Create the API calling (/echo) and handling (/echoer) webpages in app.py:
 ```python
-@app.route('/echo')
+@app.route('/echo', methods=['POST', 'GET'])
 def echo():
-	return render_template('echo.html', echo='')
 
-@app.route('/echoer', methods = ['POST'])
-def echoer():
-	
-	# Check that it is a POST request
-	if request.method == 'POST':
-		
-		# Confirm a file is uploaded
-		if 'file' not in request.files:
-			return render_template('echo.html', echo='No file uploaded!')
-		
-		# Read out some of the file contents
-		file = [line.decode() for line in request.files['file'].readlines(1000)]
-		return render_template('echo.html', echo=''.join(file))
+    # Check that it is a POST request
+    if request.method == 'POST':
+
+        # Confirm a file is uploaded
+        if 'file' not in request.files:
+            return render_template('echo.html', echo='No file uploaded!')
+
+        # Read out some of the file contents
+        file = [line.decode() for line in request.files['file'].readlines(1000)]
+        return render_template('echo.html', echo=''.join(file))
+
+    # GET request
+    return render_template('echo.html', echo='')
 ```
 #### STEP 5 - Add a secret key for API calling
 ```python
