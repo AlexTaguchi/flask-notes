@@ -1,7 +1,7 @@
 {% extends "navbar.html" %}
 
 {% block content %}
-    <form action = "{{ url_for('echoer') }}" method="post"
+    <form action = "{{ url_for('echo') }}" method="post"
         enctype="multipart/form-data">
         <input type = "file" name = "file" />
         <input type = "submit"/>
