@@ -89,11 +89,11 @@ How to submit files for backend python processing
 ```html
 <div>Navigation: <a href="/index">Home</a> <a href="/echo">Echo</a></div>
 ```
-#### STEP 3 - Add request and url_for to the flask imports in app.py:
+#### STEP 3 - Add request to the flask imports in app.py:
 ```python
 from flask import Flask, render_template, request
 ```
-#### STEP 4 - Create the API calling (/echo) and handling (/echoer) webpages in app.py:
+#### STEP 4 - Create the echo webpage for API calling in app.py:
 ```python
 @app.route('/echo', methods=['POST', 'GET'])
 def echo():
